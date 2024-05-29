@@ -1,0 +1,25 @@
+{% load static %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}} show-notification{{ message.extra_tags }} alert-dismissible fade show" role="alert"
+style="display: flex; align-items: center; margin-bottom: 1px; height: 70px; padding: 10px 40px 10px 10px; line-height: 100%;">
+  <img src="{% static "img/rmcodelogo400gray.png" %}" style="padding: 5px;" class="position-absolute bottom-0 end-0" width="80" alt=""><strong>{{ message|safe }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+  style="height: 20px; padding: 35px 0px 8px 2px; margin: 0px; width: 40px;">
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+{% comment %} {% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}} show-notification alert-dismissible fade show" role="alert"
+style="display: flex; align-items: center; margin-bottom: 1px; height: 70px; padding: 8px 35px 30px px; line-height: 100%;">
+  <strong>{{ message }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+  style="height: 20px; padding: 35px 0px 8px 2px; margin: 0px; width: 40px;">
+  </button>
+</div>
+{% endfor %}
+{% endif %} {% endcomment %}

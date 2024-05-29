@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="p-2">
+  <nav class="navbar shadow rounded">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="{% static "img/rmcodelogo400gray.png" %}" alt="rmcodelogo" width="200">
+      </a>
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Protifólio</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+        {% if request.user.is_authenticated %}
+        <form action="#" method="post">
+          {% csrf_token %}
+        <a href="#"><button type="submit" class="btn btn-danger">Sair</button></a>
+        </form>
+        {% else %}
+        <li>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Entrar</button>         
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel"><img src="{% static "img/rmcodelogo400gray.png" %}" width="200" alt=""></h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="{% url "signin" %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input class="form-control form-control-lg" type="email" name="email" placeholder="email">
+                    </div>
+                    <div class="form-group">
+                      <label>Senha</label>
+                      <input class="form-control form-control-lg" type="password" name="password" placeholder="senha">
+                      <small><a href="#">Esqueceu sua senha?</a></small>
+                    </div>
+                    <div class="text-center mt-3">
+                      <button type="submit" class="btn btn-lg btn-primary">Entrar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<h1>{{ user.first_name }} {{ user.last_name }}</h1>
+
+<a href="{% url "create_customer" %}" class="btn btn-warning">Criar CLiente</a>
+
+
+
+
+
+
+{% endblock content %}
+
